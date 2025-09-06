@@ -1,0 +1,69 @@
+package psp.boletin.ud1.practica2;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaskListMemoryCalculator {
+
+
+    public static void main(String[] args) {
+        List<Proceso> procesos = getProcesos();
+        // Sumar la memoria de todos los procesos
+        sumarMemoriaProcesos(procesos);
+    }
+
+    /**
+     * Suma la memoria de todos los procesos
+     * @param procesos
+     */
+    private static void sumarMemoriaProcesos(List<Proceso> procesos) {
+        long memoriaTotal = 0;
+        for (Proceso p : procesos) {
+            System.out.println(p);
+            memoriaTotal += p.getUsoMemoria();
+        }
+        // Mostrar el resultado en MB
+        System.out.println("Memoria total utilizada por todos los procesos: " + (memoriaTotal) + " KB");
+    }
+
+    /**
+     * Obtiene los procesos del sistema
+     * @return
+     */
+    private static List<Proceso> getProcesos() {
+        List<Proceso> listaProcesos = new ArrayList<>();
+        try {
+            // Ejecutar el comando tasklist
+            ProcessBuilder builder = new ProcessBuilder("tasklist");
+            Process process = builder.start();
+
+            // Leer la salida del comando tasklist
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+
+
+            // Saltar las primeras líneas de cabecera
+            for (int i = 0; i < 3; i++) {
+                reader.readLine();
+            }
+
+            // Leer cada línea de los procesos
+            while ((line = reader.readLine()) != null) {
+                // Verificar que la línea no esté vacía
+                if (line.trim().isEmpty()) continue;
+
+                try {
+                    Proceso p = Parsear.parsearLinea(line);
+                    listaProcesos.add(p);
+                } catch (Exception e) {
+                    System.out.println("Error procesando línea: " + e);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error leyendo los procesos" + e);
+        }
+        return listaProcesos;
+    }
+}

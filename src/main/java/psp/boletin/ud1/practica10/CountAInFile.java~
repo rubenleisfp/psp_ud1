@@ -1,0 +1,53 @@
+package psp.boletin.ud1.practica10;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CountAInFile {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // Nombre del archivo de texto
+        String fileName = "texto.txt";
+        File file = new File(fileName);
+        List<Process> processes = new ArrayList<>();
+
+        // Leer el archivo y dividir en líneas
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+        int lineNumber = 1;
+
+        while ((line = reader.readLine()) != null) {
+            // Crear proceso para cada línea
+
+            String clase="psp.boletin.practica2.CountAProcess";
+            ProcessBuilder processBuilder = new ProcessBuilder(
+                    "java", "-cp", "target/classes", clase, line, String.valueOf(lineNumber)); // Ejecuta el proceso que cuenta 'a'
+            Process process = processBuilder.start();
+            processes.add(process);
+            lineNumber++;
+        }
+
+        // Esperar a que todos los procesos terminen
+        for (Process process : processes) {
+            process.waitFor();  // Espera que termine cada proceso
+        }
+
+        // Recopilar los resultados de cada proceso
+        int totalA = 0;
+        for (int i = 1; i < lineNumber; i++) {
+            // Leer el archivo generado por cada proceso
+            File resultFile = new File("Fichero_cuenta_a_" + i + ".txt");
+            BufferedReader resultReader = new BufferedReader(new FileReader(resultFile));
+            int countA = Integer.parseInt(resultReader.readLine());
+            totalA += countA;
+            resultReader.close();
+        }
+
+        // Mostrar el resultado final
+        System.out.println("Número total de letras 'a' en el archivo: " + totalA);
+        reader.close();
+    }
+}
