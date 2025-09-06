@@ -13,7 +13,6 @@ public class TaskListFilterExample {
         System.out.println("Escribe el nombre del proceso a buscar: ");
         String processName = sc.nextLine();
 
-
         List<String> processFound = findProcess(processName);
         for (String process: processFound) {
             System.out.println(process);

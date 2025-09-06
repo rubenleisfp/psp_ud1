@@ -53,7 +53,7 @@ public class TaskListFilterExample {
             return processList;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error al ejecutar el proceso: " + e.getMessage());
         }
         return processList;
     }

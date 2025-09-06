@@ -19,7 +19,7 @@ public class MultiprocesoCalcNotepad {
             process2.waitFor();
             System.out.println("Done!");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al ejecutar el proceso: " + e.getMessage());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

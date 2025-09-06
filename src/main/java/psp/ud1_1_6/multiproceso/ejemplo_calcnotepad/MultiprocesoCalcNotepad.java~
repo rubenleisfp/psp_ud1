@@ -1,4 +1,4 @@
-package psp.ud1_1_6.multiproceso.ejemplo_bucles;
+package psp.ud1_1_6.multiproceso.ejemplo_calcnotepad;
 
 import java.io.IOException;
 

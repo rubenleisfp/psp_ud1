@@ -21,7 +21,7 @@ public class MultiprocesoBucles {
             process1.waitFor();
             process2.waitFor();
         } catch (IOException | InterruptedException e) {
-            System.err.println("Error al ejecutar el proceso: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

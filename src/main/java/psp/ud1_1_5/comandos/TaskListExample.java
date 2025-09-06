@@ -21,7 +21,7 @@ public class TaskListExample {
                 System.out.println(line);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error al ejecutar el proceso: " + e.getMessage());
         }
     }
 

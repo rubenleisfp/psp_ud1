@@ -67,7 +67,7 @@ public class ProcessCounter {
             return processList;
 
         } catch (Exception e) {
-            System.err.println("Error al ejecutar el proceso: " + e.getMessage());
+            e.printStackTrace();
         }
         return processList;
     }
