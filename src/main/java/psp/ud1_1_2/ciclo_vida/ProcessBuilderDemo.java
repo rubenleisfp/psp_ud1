@@ -1,0 +1,136 @@
+package psp.ud1_1_2.ciclo_vida;// Java code illustrating command() method
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+class ProcessBuilderDemo {
+
+    public static void main(String[] arg) throws IOException, InterruptedException {
+        //TODO ve comentando y descomentando estos metodos para observar su funcionamiento
+        ejemplo1LanzarNotepad();
+        //ejemplo2LanzarNotepadAlternativo();
+        //ejemplo3DirectoryAndRedirectToJava();
+        //ejemplo4RedirectToFile();
+        //ejemplo5VariablesEntorno();
+    }
+
+    /**
+     * Abrirmos el programa notepad
+     *
+     * @throws IOException
+     */
+    public static void ejemplo1LanzarNotepad() throws IOException {
+        // creating list of process
+        List<String> list = new ArrayList<String>();
+        list.add("notepad.exe");
+
+        // create the process
+        ProcessBuilder build = new ProcessBuilder(list);
+
+        build.start();
+        // checking the command i list
+        System.out.println("command: " + build.command());
+    }
+
+    /**
+     * Abrimos el programa notepad con el fichero xyz.txt
+     *
+     * No usamos la lista en este ocasion, usamos el argumento String[] vars
+     *
+     *
+     * @throws IOException
+     */
+    public static void ejemplo2LanzarNotepadAlternativo() throws IOException {
+        //<OPCION_1>
+        // crea el proceso con el comando y el fichero xy<
+        ProcessBuilder build = new ProcessBuilder("notepad.exe", "xyz.txt");
+        build.start();
+        // mostrar el comando
+        System.out.println("command: " + build.command());
+        //</OPCION_1>
+
+
+        //<OPCION_2>
+//        List<String> comandos = new ArrayList<>();
+//        comandos.add("notepad.exe");
+//        comandos.add("xyz.txt");
+//        ProcessBuilder build2 = new ProcessBuilder(comandos);
+//        build2.start();
+//
+//        System.out.println("command: " + build.command());
+        //</OPCION_2>
+    }
+
+    /**
+     * Establecer el directorio de trabajo y redirigir la salida del proceso a la
+     * salida estandar de Java
+     *
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void ejemplo3DirectoryAndRedirectToJava() throws IOException, InterruptedException {
+
+        // Crear ProcessBuilder con el comando 'cmd' y 'dir' para listar archivos
+        ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "dir");
+
+        // Establecer el directorio donde se quiere ejecutar el comando 'dir'
+        processBuilder.directory(new File("src/main/java/psp")); // Cambia 'src' por la carpeta que desees
+        //Redirigir la salida del proceso aa la salida estandar de Java
+        //processBuilder.inheritIO(); //Alternativa: process.getInputStream().transferTo(System.out);
+
+        // Iniciar el proceso
+        Process process = processBuilder.start();
+
+        //Redirigir la salida del proceso  la salida estandar de Java
+        process.getInputStream().transferTo(System.out); //Alternativa:  processBuilder.inheritIO();
+    }
+
+    /**
+     * Establecer el directorio de trabajo y redirigir la salida del proceso a un fichero
+     *
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void ejemplo4RedirectToFile() throws IOException, InterruptedException {
+
+        // Crear ProcessBuilder con el comando 'cmd' y 'dir' para listar archivos
+        ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "dir");
+
+        // Establecer el directorio donde se quiere ejecutar el comando 'dir'
+        processBuilder.directory(new File("src")); // Cambia 'src' por la carpeta que desees
+        // Crear un archivo donde se redirigirá la salida del comando 'dir'
+        File archivoSalida = new File("salida_dir.txt");
+        // Redirigir la salida del proceso al archivo
+        processBuilder.redirectOutput(archivoSalida);
+        // Iniciar el proceso
+        Process process = processBuilder.start();
+    }
+
+    /**
+     * Devuelve un mapa con las variables de entornos utilizadas por el proceso
+     *
+     * Son propias de cada maquina y fichero
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void ejemplo5VariablesEntorno() throws IOException, InterruptedException {
+        // creating the process
+        ProcessBuilder pb = new ProcessBuilder();
+
+        // map view of this process builder's environment
+        Map<String, String> envMap = pb.environment();
+
+        // checking map view of environment
+        for (Map.Entry<String, String> entry :
+                envMap.entrySet()) {
+            // checking key and value separately
+            System.out.println("Key = " + entry.getKey()
+                    + ", Value = "
+                    + entry.getValue());
+        }
+    }
+
+}
