@@ -8,13 +8,17 @@ import java.util.Map;
 
 class ProcessBuilderDemo {
 
-    public static void main(String[] arg) throws IOException, InterruptedException {
+    public static void main(String[] arg)  {
         //TODO ve comentando y descomentando estos metodos para observar su funcionamiento
-        ejemplo1LanzarNotepad();
-        //ejemplo2LanzarNotepadAlternativo();
-        //ejemplo3DirectoryAndRedirectToJava();
-        //ejemplo4RedirectToFile();
-        //ejemplo5VariablesEntorno();
+        try {
+            ejemplo1LanzarNotepad();
+            //ejemplo2LanzarNotepadAlternativo();
+            //ejemplo3DirectoryAndRedirectToJava();
+            //ejemplo4RedirectToFile();
+            //ejemplo5VariablesEntorno();
+        } catch (IOException e) {
+            System.err.println("Error al crear el proceso: " + e.getMessage());
+        }
     }
 
     /**

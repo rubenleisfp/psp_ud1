@@ -11,7 +11,6 @@ public class ProcessLifeCycle {
             Thread.sleep(5000);
             Process notepadProcess = processBuilder.start();
             System.out.println("Proceso en ejecución.");
-            // Terminar el proceso
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

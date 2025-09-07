@@ -11,7 +11,7 @@ public class ProcessCounter {
 
         contarProcesosExe();
 
-        //Apartado Investiga
+        //Apartado Investigacion
 //        String detalleProceso = buscarProceso("Notepad");
 //        System.out.println("detalleProceso: " + detalleProceso);
     }

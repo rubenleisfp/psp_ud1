@@ -12,7 +12,7 @@ public class ProcessLifeCycle {
             Process notepadProcess = processBuilder.start();
             System.out.println("Proceso en ejecución.");
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            System.err.println("Error al crear el proceso: " + e.getMessage());
         }
     }
 }

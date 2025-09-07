@@ -24,7 +24,7 @@ public class TaskListFinder {
                     existe = true;
                     System.out.println("Proceso encontrado: " + p.getNombreImagen()
                             + " | PID: " + p.getPid()
-                            + " | Memoria: " + p.getUsoMemoria() + " K");
+                            + " | Memoria: " + p.getUsoMemoria() + "K");
                 }
             }
             if (!existe) {

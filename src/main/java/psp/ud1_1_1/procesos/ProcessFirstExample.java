@@ -10,7 +10,7 @@ public class ProcessFirstExample {
             Process process = processBuilder.start();  // Iniciar el proceso
             System.out.println("Proceso iniciado: " + process.toString());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al crear el proceso: " + e.getMessage());
         }
     }
 }

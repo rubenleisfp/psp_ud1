@@ -4,7 +4,6 @@ import java.io.IOException;
 
 public class MultiprocesoBucles {
 
-
     public static void main(String[] args) {
         try {
             // Crear y lanzar un proceso
@@ -24,6 +23,4 @@ public class MultiprocesoBucles {
             System.err.println("Error al ejecutar el proceso: " + e.getMessage());
         }
     }
-
-
 }
