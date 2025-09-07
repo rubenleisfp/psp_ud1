@@ -4,15 +4,6 @@ import java.io.IOException;
 
 public class ProcessLifeCycle {
     public static void main(String[] args) {
-        try {
-            // Crear un proceso que abra Notepad
-            ProcessBuilder processBuilder = new ProcessBuilder("notepad.exe");
-            //Esperar 5 segundos
-            Thread.sleep(5000);
-            Process notepadProcess = processBuilder.start();
-            System.out.println("Proceso en ejecución.");
-        } catch (IOException | InterruptedException e) {
-            System.err.println("Error al crear el proceso: " + e.getMessage());
-        }
+        throw new UnsupportedOperationException("A implementar por el estudiante");
     }
 }

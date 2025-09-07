@@ -20,18 +20,6 @@ class ReadDirectory {
      * @throws IOException
      */
     public static void read(String directory, String outputFile) throws IOException {
-        // Crear ProcessBuilder con el comando 'cmd' y 'dir' para listar archivos
-        ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "dir");
-
-        // Establecer el directorio donde se quiere ejecutar el comando 'dir'
-        processBuilder.directory(new File(directory)); // Cambia el directorio de trabajo
-        processBuilder.inheritIO();
-
-        File archivoSalida = new File(outputFile);
-        // Redirigir la salida del proceso al archivo
-        processBuilder.redirectOutput(archivoSalida);
-
-        // Iniciar el proceso
-        Process process = processBuilder.start();
+        throw new UnsupportedOperationException("A implementar por el estudiante");
     }
 }

@@ -5,24 +5,15 @@ import java.util.List;
 
 public class DividirRango {
 
+    /**
+     * Metodo que divide el intervalo entre el numero de procesos
+     * @param minimo
+     * @param maximo
+     * @param numRangos
+     * @return
+     */
     public List<Rango> dividir(int minimo , int maximo, int numRangos) {
-        List<Rango> rangos = new ArrayList<>();
-        int totalNumeros = maximo - minimo + 1;  // Total de números a sumar
-        int salto = totalNumeros / numRangos;  // Cantidad de números por proceso
-        for (int i = 1; i <= numRangos; i++) {
-            int resultadoSumaConSalto = minimo + salto - 1;
-
-            // Si es el último proceso, sumamos el resto al último rango
-            if (i == numRangos) {
-                resultadoSumaConSalto = maximo;
-            }
-
-            Rango rango = new Rango(minimo,resultadoSumaConSalto);
-            rangos.add(rango);
-            //lanzadorSumador.lanzarSumador(n1, resultadoSumaConSalto, nombreFich);
-            minimo = resultadoSumaConSalto + 1;
-        }
-        return rangos;
+        throw new UnsupportedOperationException("A implementar por el estudiante");
     }
 
     public static void main(String[] args) {
