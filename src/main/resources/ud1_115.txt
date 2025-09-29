@@ -1,0 +1,43 @@
+1.1.5.a Intenta realizar los siguientes comandos con tasklist y find por parejas. Guardadlos en un fichero con este nombre ud1_115.txt
+a) Muestra información detallada, de aquellos procesos cuyo PID es el valor 264
+   tasklist /FI "PID eq 264"
+
+
+b) También es posible utilizar filtros más avanzados, como condicionales, para señalar que debe imprimir por pantalla todo aquel proceso donde el uso de su memoria es mayor a 15000 y menor de 19000, por lo que, todo proceso que esté comprendido en ese rango, será mostrado.
+
+
+   tasklist /FI "MEMUSAGE gt 15000" /FI "MEMUSAGE lt 19000"
+
+
+c) Busca todos los procesos que sean de chrome.exe o notepad.exe
+
+
+   tasklist /FI "IMAGENAME eq chrome.exe" /FI "IMAGENAME eq notepad.exe"
+
+
+d) Extraer todos los procesos con un ID de proceso superior a 1000 y mostrarlas en formato csv
+   tasklist /FI "PID gt 1000" /FO CSV
+
+
+e) Extraer todos los procesos con un ID de proceso superior a 1000 y mostrarlas en formato csv. Redirigirla a un fichero llamado procesos.csv
+   tasklist /FI "PID gt 1000" /FO CSV > procesos.csv
+
+
+f) Enumerar toda la información detallada para todos los procesos que se están ejecutando actualmente
+
+
+   tasklist /V
+
+
+g) Abre el notepad, busca su pid y elimina el proceso mediante taskkill
+
+
+   - Encuentra su PID:
+     tasklist /FI "IMAGENAME eq notepad.exe"
+
+   - Mata el proceso usando el PID (reemplaza <PID> por el valor del proceso):
+     taskkill /PID <PID>
+
+
+h) Abre el notepad, pero ahora vamos a matar su proceso mediante taskill por nombre…
+  taskkill /IM notepad.exe
